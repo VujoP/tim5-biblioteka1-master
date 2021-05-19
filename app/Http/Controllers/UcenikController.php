@@ -16,8 +16,8 @@ class UcenikController extends Controller
     {
         $tipk=Tipkorisnika::where('Naziv','Ucenik')->first()->Id;
         $ucenik=Korisnik::where('tipkorisnika_id')->get();
-        return veiw('ucenik.index', ['tipkorinika_id'])
-
+        return view('ucenik.index', ['tipkorinika_id']);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -48,7 +48,7 @@ class UcenikController extends Controller
     public function show(Ucenik $ucenik)
     {
         $ucenik=Korisnik::finOrFail('Id' , $ucenik->Id);
-        return view('ucenik.show', ['ucenik'->$ucenik])
+        return view('ucenik.show', ['ucenik'->$ucenik]);
     }
 
     /**

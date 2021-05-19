@@ -11,6 +11,8 @@ use App\Http\Controllers\KorsnikController;
 use App\Http\Controllers\TipkorsnikaController;
 use App\Http\Controllers\ZanrController;
 use App\Http\Controllers\PolisaController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,3 +74,14 @@ Route::resource('zanr',ZanrController::class);
 Route::get('polisa',function(){
     return view('polisa.index');
 });
+
+// registracija
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::post('login/{provider}/callback', [LoginController::class,'handleCallback']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
