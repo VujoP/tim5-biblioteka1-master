@@ -25,15 +25,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 // Route za dashboard
-Route::get("/",function(){
-    return view('dashboard.index');
-})->name('dashboard');
-//Route::get('/settings',[PismoController::class,'index')->name('settings');
-Route::get('/settings',function(){
-    return view('settings.index');
-})->name('settings');
-// kraj route za dashboard
-Route::resource('pismo', PismoController::class);
+
 
 
 // Route::get('/format',[FormatController::class,'index'])->name('format.index');
@@ -52,27 +44,42 @@ Route::get('/izdavac/{id}',[IzdavacController::class,'show'])->name('izdavac.edi
 Route::post('/izdavac-update',[IzdavacController::class,'update'])->name('izdavac.update');
 Route::get('/izdavac/delete/{id}',[IzdavacController::class,'delete'])->name('izdavac.delete');
 */
+Route::middleware(['auth'])->group(function () {
 
+    Route::get("/",function(){
+        return view('dashboard.index');
+    })->name('dashboard');
+//Route::get('/settings',[PismoController::class,'index')->name('settings');
+    Route::get('/settings',function(){
+        return view('settings.index');
+    })->name('settings');
+// kraj route za dashboard
+    Route::resource('pismo', PismoController::class);
 // route za Izdavac
-Route::resource('izdavac',IzdavacController::class);
-Route::resource('format',FormatController::class);
-Route::resource('povez',PovezController::class);
+    Route::resource('kategorija',KategorijaController::class);
+    Route::resource('izdavac',IzdavacController::class);
+    Route::resource('format',FormatController::class);
+    Route::resource('povez',PovezController::class);
 
-Route::get('/settingsKategorije', [KategorijaController::class,'index'])->name("kategorije");
+    Route::get('/settingsKategorije', [KategorijaController::class,'index'])->name("kategorije");
 
-Route::get('/createKategorije', [KategorijaController::class,'create'])->name("kategorije.create");
+    Route::get('/createKategorije', [KategorijaController::class,'create'])->name("kategorije.create");
 
-Route::post('/storeKategorije',[KategorijaController::class,'store'] )->name("kategorije.store");
+    Route::post('/storeKategorije',[KategorijaController::class,'store'] )->name("kategorije.store");
 
-Route::get('/deleteKategorije/{id}', [KategorijaController::class,'delete'] )->name("kategorije.delete");
+    Route::get('/deleteKategorije/{id}', [KategorijaController::class,'delete'] )->name("kategorije.delete");
 
-Route::get('/editKategorije/{id}', [KategorijaController::class,'edit'])->name("kategorije.edit");
+    Route::get('/editKategorije/{id}', [KategorijaController::class,'edit'])->name("kategorije.edit");
 
-Route::post('/updateKategorije/{id}', [KategorijaController::class,'update'])->name("kategorije.update");
-Route::resource('ucenik',UcenikController::class);
-Route::resource('zanr',ZanrController::class);
-Route::get('polisa',function(){
-    return view('polisa.index');
+    Route::post('/updateKategorije/{id}', [KategorijaController::class,'update'])->name("kategorije.update");
+    Route::resource('ucenik',UcenikController::class);
+    Route::resource('zanr',ZanrController::class);
+    Route::get('polisa',function(){
+        return view('polisa.index');
+    });
+    Route::get("/home",function(){
+        return view('dashboard.index');
+    })->name('home');
 });
 
 // registracija
