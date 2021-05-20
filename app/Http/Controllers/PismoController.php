@@ -19,7 +19,7 @@ class PismoController extends Controller
         $pisma = Pismo::all();
 
         // load the view and pass the sharks
-        return View::make('pages.pismo.index')
+        return View::make('pismo.index')
             ->with('pisma', $pisma);
     }
 
@@ -30,7 +30,7 @@ class PismoController extends Controller
      */
     public function create()
     {
-        return View::make('pages.pismo.create');
+        return View::make('pismo.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class PismoController extends Controller
         $pismo->save();
 
         return Redirect::to('pismo');
-        
+
     }
 
     /**
@@ -72,7 +72,7 @@ class PismoController extends Controller
         // load the view and pass the sharks
         return View::make('pages.pismo.edit')
             ->with('pismo', $pismo);
-        
+
     }
 
     /**

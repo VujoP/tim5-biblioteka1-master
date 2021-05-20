@@ -251,7 +251,7 @@
                     <div class="ml-[30px]">
                         <span class="flex justify-between w-full whitespace-nowrap">
                             <div>
-                                <a href="evidencijaKnjiga.php" aria-label="Knjige">
+                                <a href="{{route('knjiga.index')}}" aria-label="Knjige">
                                     <i
                                         class="text-[25px] transition duration-300 ease-in group-hover:text-[#576cdf] text-[#707070] far fa-copy"></i>
                                     <div class="hidden sidebar-item">
@@ -393,10 +393,17 @@
 </div>
 
     <!-- Scripts -->
-    <script src="/js/jquery.min.js " defer=""></script>
+<script src="/js/jquery.min.js "></script>
 <script src="/js/app.js " defer=""></script>
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-
+    <script>
+        if($('#kratki_sadrzaj').length > 0){
+            CKEDITOR.replace('kratki_sadrzaj', {
+                width: "90%",
+                height: "150px"
+            });
+        }
+    </script>
 <!-- File upload -->
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 <script src="https://unpkg.com/create-file-list"></script>    <!-- End Scripts -->

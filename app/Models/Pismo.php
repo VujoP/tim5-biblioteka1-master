@@ -9,5 +9,9 @@ class Pismo extends Model
 {
     use HasFactory;
 
-    public $table = 'pisma';
+    public $table = 'pismo';
+
+    public function knjige(){
+        return $this->hasMany(Knjiga::class, 'PismoId');
+    }
 }

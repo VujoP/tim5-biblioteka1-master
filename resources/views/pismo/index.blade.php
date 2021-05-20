@@ -38,13 +38,13 @@
             @if (@session('success') )
             <div class="bg-blue-100 mssg border-t flex items-center border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
                 <p class="font-bold items-center">{{session('success')}}</p>
-               
+
             </div>
             @endif
             @if( @session('fail') )
             <div class="bg-blue-100 fail border-t flex items-center border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
                 <p class="font-bold items-center">{{session('fail')}}</p>
-               
+
             </div>
             @endif
                 <div class="flex items-center px-[50px] py-8 space-x-3 rounded-lg">
@@ -90,22 +90,22 @@
                                         <div class="absolute right-[25px] w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                             aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                             <div class="py-1">
-                                                <a href="{{route('pismo.edit',$p->Id)}}" tabindex="0"
+                                                <a href="{{route('pismo.edit', $p->Id)}}" tabindex="0"
                                                     class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                     role="menuitem">
                                                     <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
                                                     <span class="px-4 py-0">Izmijeni pismo</span>
                                                 </a>
-                                                <a href="{{route('pismo.delete',$p->Id)}}"  tabindex="0"
+                                                <a href="{{route('pismo.destroy',$p->Id)}}"  tabindex="0"
                                                     class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                     role="menuitem">
-                                                    <form action="{{route('pismo.delete',$p->Id)}}" method="post">
-                                                
+                                                    <form action="{{route('pismo.destroy',$p->Id)}}" method="post">
+
                                                     <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
                                                     <span class="px-4 py-0">Izbrisi pismo</span>
-                                                    
+
                                                 </a>
-                                                
+
                                             </div>
                                         </div>
                                     </div>

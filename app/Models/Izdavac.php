@@ -10,4 +10,6 @@ class Izdavac extends Model
     use HasFactory;
     protected $fillable=['Naziv'];
     protected $hidden=['Id'];
+    public $table = 'izdavac';
+    public $timestamps = false;
 }

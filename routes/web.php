@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KnjigaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PismoController;
 use App\Http\Controllers\PovezController;
@@ -44,7 +45,7 @@ Route::get('/izdavac/{id}',[IzdavacController::class,'show'])->name('izdavac.edi
 Route::post('/izdavac-update',[IzdavacController::class,'update'])->name('izdavac.update');
 Route::get('/izdavac/delete/{id}',[IzdavacController::class,'delete'])->name('izdavac.delete');
 */
-Route::middleware(['auth'])->group(function () {
+//Route::middleware(['auth'])->group(function () {
 
     Route::get("/",function(){
         return view('dashboard.index');
@@ -74,13 +75,18 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/updateKategorije/{id}', [KategorijaController::class,'update'])->name("kategorije.update");
     Route::resource('ucenik',UcenikController::class);
     Route::resource('zanr',ZanrController::class);
-    Route::get('polisa',function(){
+
+    Route::get('/knjiga/specifikacija', [KnjigaController::class,'specifikacija'])->name("knjiga.specifikacija");
+    Route::get('/knjiga/multimedia', [KnjigaController::class,'multimedia'])->name("knjiga.multimedia");
+    Route::resource('knjiga',KnjigaController::class);
+
+Route::get('polisa',function(){
         return view('polisa.index');
     });
     Route::get("/home",function(){
         return view('dashboard.index');
     })->name('home');
-});
+//});
 
 // registracija
 

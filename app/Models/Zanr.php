@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Zanr extends Model
 {
     use HasFactory;
+
+    public $table = 'zanr';
 }

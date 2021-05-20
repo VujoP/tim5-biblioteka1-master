@@ -13,7 +13,7 @@ class CreatePismosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pisma', function (Blueprint $table) {
+        Schema::create('pismas', function (Blueprint $table) {
             $table->id();
             $table->string('Naziv');
             $table->timestamps();
