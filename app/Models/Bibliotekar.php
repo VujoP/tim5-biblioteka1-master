@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Bibliotekar extends Model
 {
     use HasFactory;
-    protected $table='korisniks';
+    protected $table='users';
 }

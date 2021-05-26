@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Bibliotekar;
 use Illuminate\Http\Request;
-use App\Models\Korisnik;
+use App\Models\User;
 use App\Models\Tipkorisnika;
-
+use Illuminate\Support\Facades\Hash;
 class BibliotekarController extends Controller
 {
     /**
@@ -16,8 +16,8 @@ class BibliotekarController extends Controller
      */
     public function index()
     {   
-        $idb=Tipkorisnika::where('Naziv','Bibliotekar')->first()->Id;
-        $bib=Korisnik::where('tipkorisnika_id',$idb)->get();
+        $idb=Tipkorisnika::where('Naziv','Bibliotekar')->first()->id;
+        $bib=User::where('tipkorisnika_id',$idb)->get();
         return view('bibliotekar.index',['bib'=>$bib]);
     }
 
@@ -49,12 +49,12 @@ class BibliotekarController extends Controller
         'pw2Bibliotekar'=>'required',
         'tip_korisnika'=>'required'
         ]);
-        $bibliotekar=new Korisnik;
+        $bibliotekar=new User;
         $bibliotekar->ImePrezime=$request->imePrezimeBibliotekar;
         $bibliotekar->JMBG=$request->jmbgBibliotekar;
         $bibliotekar->Email=$request->emailBibliotekar;
         $bibliotekar->KorisnickoIme=$request->usernameBibliotekar;
-        $bibliotekar->Sifra=$request->pwBibliotekar;
+        $bibliotekar->password=Hash::make($request->pwBibliotekar);
         $bibliotekar->tipkorisnika_id=$request->tip_korisnika;
         $bibliotekar=$bibliotekar->save();
         if($bibliotekar){
@@ -72,9 +72,9 @@ class BibliotekarController extends Controller
      * @param  \App\Models\Bibliotekar  $bibliotekar
      * @return \Illuminate\Http\Response
      */
-    public function show(Korisnik $bibliotekar)
+    public function show(User $bibliotekar)
     {
-        $bibliotekar=Korisnik::where('Id',$bibliotekar->Id)->first();
+        $bibliotekar=User::where('Id',$bibliotekar->id)->first();
     
         return view('bibliotekar.show',['b'=>$bibliotekar]);
     }
@@ -85,9 +85,9 @@ class BibliotekarController extends Controller
      * @param  \App\Models\Bibliotekar  $bibliotekar
      * @return \Illuminate\Http\Response
      */
-    public function edit(Korisnik $bibliotekar)
+    public function edit(User $bibliotekar)
     {
-        $bibliotekar=Korisnik::where('Id',$bibliotekar->Id)->first();
+        $bibliotekar=User::where('id',$bibliotekar->id)->first();
         $tip=Tipkorisnika::all();
        //'t'=>$tip
         return view('bibliotekar.edit',['b'=>$bibliotekar,'tip'=>$tip]);
@@ -100,7 +100,7 @@ class BibliotekarController extends Controller
      * @param  \App\Models\Bibliotekar  $bibliotekar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bibliotekar $bibliotekar)
+    public function update(Request $request, User $bibliotekar)
     {
         $request->validate([
             'imePrezimeBibliotekarEdit'=>'required',
@@ -111,12 +111,12 @@ class BibliotekarController extends Controller
             'pw2BibliotekarEdit'=>'required',
             'tip_korisnika'=>'required'
             ]);
-            $bibliotekar=new Korisnik;
+            $bibliotekar=new User;
             $bibliotekar->ImePrezime=$request->imePrezimeBibliotekarEdit;
             $bibliotekar->JMBG=$request->jmbgBibliotekarEdit;
             $bibliotekar->Email=$request->emailBibliotekarEdit;
             $bibliotekar->KorisnickoIme=$request->usernameBibliotekarEdit;
-            $bibliotekar->Sifra=$request->pwBibliotekarEdit;
+            $bibliotekar->password=Hash::make($request->pwBibliotekarEdit);
             $bibliotekar->tipkorisnika_id=$request->tip_korisnika;
             $bibliotekar=$bibliotekar->save();
             if($bibliotekar){
@@ -133,9 +133,9 @@ class BibliotekarController extends Controller
      * @param  \App\Models\Bibliotekar  $bibliotekar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bibliotekar $bibliotekar)
+    public function destroy(User $bibliotekar)
     {
-        $bibliotekar=Bibliotekar::where('Id',$bibliotekar->Id)->delete();
+        $bibliotekar=User::where('id',$bibliotekar->id)->delete();
         if($bibliotekar){
             return redirect()->route('bibliotekar.index')->with('success','Bibliotekar je uspjesno obrisan');
           }else{

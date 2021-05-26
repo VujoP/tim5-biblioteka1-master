@@ -17,7 +17,7 @@ class CreateKorisniksTable extends Migration
             $table->id('Id');
             $table->unsignedBigInteger('tipkorisnika_id');
             $table->string('ImePrezime');
-            $table->string('Email')->unique();
+            $table->string('Email');
             $table->string('JMBG')->nullable();
             $table->string('KorisnickoIme')->nullable();
             $table->string('Sifra')->nullable();

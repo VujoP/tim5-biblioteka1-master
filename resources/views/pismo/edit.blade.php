@@ -16,7 +16,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                 <li>
-                                        <a href="settingsPolisa.php" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="#" class="text-[#2196f3] hover:text-blue-600">
                                             Settings
                                         </a>
                                     </li>
@@ -24,7 +24,7 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="/pismo" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('pismo.index')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Pisma
                                         </a>
                                     </li>
@@ -45,9 +45,10 @@
             
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form method="POST" action="{{ route('pismo.update') }}" class="text-gray-700 forma" >
-                    @csrf
-                    <input type="hidden" name="id" value="{{$pismo->Id}}">
+                <form method="post" action="{{ route('pismo.update',$pismo->id) }}" class="text-gray-700 forma" >
+                    @csrf 
+                    @method('PUT')
+                   
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[150px]">
                             <div class="mt-[20px]">

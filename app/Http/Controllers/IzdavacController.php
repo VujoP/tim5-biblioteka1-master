@@ -57,7 +57,7 @@ class IzdavacController extends Controller
      */
     public function show(Izdavac $izdavac)
     {
-        $izdavac=Izdavac::find($izdavac->Id);
+        $izdavac=Izdavac::find($izdavac->id);
         return view('izdavac.show',["izdavac"=>$izdavac]);
     }
 
@@ -84,7 +84,7 @@ class IzdavacController extends Controller
         $request->validate([
          'nazivIzdavacEdit'=>'required'
         ]);
-        $azurirano=Izdavac::where('Id',$izdavac->Id)->update([
+        $azurirano=Izdavac::where('id',$izdavac->id)->update([
             'Naziv'=>$request->nazivIzdavacEdit
         ]);
         if($azurirano){
@@ -104,7 +104,7 @@ class IzdavacController extends Controller
     public function destroy(Izdavac $izdavac)
     {
         
-        $izdanje=Izdavac::where('Id',$izdavac->Id);
+        $izdanje=Izdavac::where('id',$izdavac->id);
         $obrisi=$izdanje->delete();
         if($obrisi){
             return redirect()->route('izdavac.index')->with('success','Izdavac je uspješno obrisan');

@@ -23,7 +23,7 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="{{route('bibliotekar.edit',$b->Id)}}" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('bibliotekar.edit',$b->id)}}" class="text-[#2196f3] hover:text-blue-600">
                                             ID-{{$b->Id}}
                                         </a>
                                     </li>
@@ -36,7 +36,7 @@
                             <i class="fas fa-redo-alt mr-[3px]"></i>
                             Resetuj sifru
                         </a>
-                        <a href="{{route('bibliotekar.edit',$b->Id)}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                        <a href="{{route('bibliotekar.edit',$b->id)}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="fas fa-edit mr-[3px] "></i>
                             Izmjeni podatke
                         </a>
@@ -50,7 +50,7 @@
                             <div class="absolute right-0 w-56 mt-[10px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
-                                    <form action="{{route('bibliotekar.destroy',$b->Id)}}" tabindex="0" method="post"
+                                    <form action="{{route('bibliotekar.destroy',$b->id)}}" tabindex="0" method="post"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         @csrf 

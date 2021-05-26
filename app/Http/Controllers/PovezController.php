@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\DB;
 class PovezController extends Controller
 {
     public function index(){
-      $povezi=DB::table('povez')->get();
+      $povezi=DB::table('povezs')->get();
       return view("povez.index",["povezi"=>$povezi]);
     }
 
     public function show($id){
-      $povez=DB::table('povez')
+      $povez=DB::table('povezs')
                ->where('Id',$id)
                ->first();
       return view('povez.show',['po'=>$povez]);
@@ -22,7 +22,7 @@ class PovezController extends Controller
          $request->validate([
           'nazivPovezEdit'=>'required'
          ]);
-         $povez=DB::table('povez')
+         $povez=DB::table('povezs')
                   ->where('Id',$request->input('id'))
                   ->update([
                    'Naziv'=>$request->input('nazivPovezEdit')
@@ -43,7 +43,7 @@ class PovezController extends Controller
       $request->validate([
         'nazivPovez'=>'required'
       ]);
-      $povez=DB::table('povez')
+      $povez=DB::table('povezs')
                ->insert([
                  'Naziv'=>$request->input('nazivPovez')
                ]);
@@ -55,7 +55,7 @@ class PovezController extends Controller
     }
 
     public function destroy($id){
-      $povez=DB::table('povez')
+      $povez=DB::table('povezs')
              ->where('Id',$id)
              ->delete();
              if($povez){

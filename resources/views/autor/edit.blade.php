@@ -36,7 +36,7 @@
             
             <!-- Space for content onkeydown="clearErrorsImePrezimeAutorEdit()" -->
             <div class="scroll height-content section-content">
-                <form action="{{route('autor.update',$autor->Id)}}" method="post" class="text-gray-700 forma">
+                <form action="{{route('autor.update',$autor->id)}}" method="post" class="text-gray-700 forma">
                     @csrf 
                     @method('PUT')
                     <div class="flex flex-row ml-[30px]">

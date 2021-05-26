@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\DB;
 class FormatController extends Controller
 {
     public function index(){
-      $formati=DB::table('format')->get();
+      $formati=DB::table('formats')->get();
       return view('format.index',["formati"=>$formati]);
     }
     public function show($id){
-      $format=DB::table('format')
+      $format=DB::table('formats')
                 ->where('Id',$id)
                 ->first();
       return view('format.show',['format'=>$format]);
@@ -20,7 +20,7 @@ class FormatController extends Controller
           $request->validate([
             'nazivFormatEdit'=>'required'
           ]);
-          $format=DB::table('format')
+          $format=DB::table('formats')
                     ->where('Id',$request->input('id'))
                     ->update([
                     'Naziv'=>$request->input('nazivFormatEdit')
@@ -38,7 +38,7 @@ class FormatController extends Controller
        $request->validate([
        'nazivFormat'=>'required'
        ]);
-       $format=DB::table('format')
+       $format=DB::table('formats')
          ->insert([
          'Naziv'=>$request->input('nazivFormat')
          ]);
@@ -50,7 +50,7 @@ class FormatController extends Controller
     }
 
     public function destroy($id){
-      $format=DB::table('format')
+      $format=DB::table('formats')
               ->where('Id',$id)
               ->delete();
       return redirect()->route('format.index')->with("success","Format je uspješno izbrisan");

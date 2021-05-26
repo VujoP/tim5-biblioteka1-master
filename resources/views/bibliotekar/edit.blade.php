@@ -35,7 +35,7 @@
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form action="{{route('bibliotekar.update',$b->Id)}}" method="post" class="text-gray-700 text-[14px] forma">
+                <form action="{{route('bibliotekar.update',$b->id)}}" method="post" class="text-gray-700 text-[14px] forma">
                     @csrf 
                     @method('PUT')
                     <div class="flex flex-row ml-[30px]">
@@ -93,7 +93,7 @@
 
                             <div class="mt-[20px]">
                                 <span>Sifra <span class="text-red-500">*</span></span>
-                                <input type="password" name="pwBibliotekarEdit" id="pwBibliotekarEdit" value="{{$b->Sifra}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekarEdit()"/>
+                                <input type="password" name="pwBibliotekarEdit" id="pwBibliotekarEdit" value="{{$b->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekarEdit()"/>
                                 <div class="fail" id="validatePwBibliotekarEdit">
                                 @error('pwBibliotekarEdit')@php echo "Sifra bibliotekara je obavezno polje"; @endphp @enderror
                              
@@ -102,7 +102,7 @@
 
                             <div class="mt-[20px]">
                                 <span>Ponovi sifru <span class="text-red-500">*</span></span>
-                                <input type="password" name="pw2BibliotekarEdit" id="pw2BibliotekarEdit" value="{{$b->Sifra}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2BibliotekarEdit()"/>
+                                <input type="password" name="pw2BibliotekarEdit" id="pw2BibliotekarEdit" value="{{$b->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2BibliotekarEdit()"/>
                                
                                 <div class="fail" id="validatePw2BibliotekarEdit">
                                 @error('pw2BibliotekarEdit')@php echo "Ponovljena sifra bibliotekara je obavezno polje i mora da se poklapa sa gornjom sifrom"; @endphp @enderror

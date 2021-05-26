@@ -44,7 +44,7 @@
             
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form action="{{route('izdavac.update',$izdavac->Id)}}" method="post" class="text-gray-700 forma">
+                <form action="{{route('izdavac.update',$izdavac->id)}}" method="post" class="text-gray-700 forma">
                 @csrf
                 @method('PUT')
                 

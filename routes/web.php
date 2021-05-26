@@ -10,7 +10,9 @@ use App\Http\Controllers\KorisnikController;
 use App\Http\Controllers\BibliotekarController;
 use App\Http\Controllers\TipkorisnikaController;
 use App\Http\Controllers\UcenikController;
-
+use App\Http\Controllers\KnjigaController;
+use App\Http\Controllers\ZanrController;
+use App\Http\Controllers\KategorijaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,21 +23,16 @@ use App\Http\Controllers\UcenikController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route za dashboard
-Route::get("/",function(){
-    return view('dashboard.index');
-})->name('dashboard');
+
+// Dodajemo middleware za odredjivanje vidljivosti ruta
+Route::middleware(['auth'])->group(function(){
+});
 //Route::get('/settings',[PismoController::class,'index')->name('settings');
 Route::get('/settings',function(){
     return view('polisa.index');
 })->name('settings');
 // kraj route za dashboard
-Route::get('/pismo',[PismoController::class,'index'])->name('pismo.index');
-Route::get("/pismo/{id}",[PismoController::class,'show'])->name('pismo.edit');
-Route::post("/pismo-update",[PismoController::class,'update'])->name('pismo.update');
-Route::get("/pismo/delete/{id}",[PismoController::class,'destroy'])->name('pismo.delete');
-Route::get("/addPismo",[PismoController::class,'addPismo'])->name('pismo.add');
-Route::post("/savePismo",[PismoController::class,'savePismo'])->name('pismo.save');
+Route::resource('pismo',PismoController::class);
 
 Route::get('/povez',[PovezController::class,'index'])->name('povez.index');
 Route::get('/povez/{id}',[PovezController::class,'show'])->name('povez.edit');
@@ -70,5 +67,24 @@ Route::resource('bibliotekar',BibliotekarController::class);
 // Route za Ucenika
 Route::resource('ucenik',UcenikController::class);
 
+ // Route za dashboard
+ Route::get("/",function(){
+    return view('dashboard.index');
+})->name('dashboard');
 
+Auth::routes();
 
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Auth::routes();
+
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route za knjigu
+Route::get('knjiga0',[KnjigaController::class,'create0']);
+Route::resource('knjiga',KnjigaController::class);
+Route::get('knjiga-{knjiga}/specifikacija',[KnjigaController::class,'spec'])->name('knjiga.spec');
+//Route za zanr
+Route::resource('zanr',ZanrController::class);
+//Route za kategoriju
+Route::resource('kategorija',KategorijaController::class);

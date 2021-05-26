@@ -9,5 +9,9 @@ class Izdavac extends Model
 {
     use HasFactory;
     protected $fillable=['Naziv'];
-    protected $hidden=['Id'];
+    protected $hidden=['id'];
+    protected $table='izdavacs';
+    public function knjiga(){
+        return $this->hasMany(Knjiga::class);
+    }
 }

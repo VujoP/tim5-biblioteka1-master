@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ucenik;
 use Illuminate\Http\Request;
 use App\Models\Tipkorisnika;
-use App\Models\Korisnik;
+use App\Models\User;
 class UcenikController extends Controller
 {
     /**
@@ -15,8 +15,8 @@ class UcenikController extends Controller
      */
     public function index()
     {
-        $tipid=Tipkorisnika::where('Naziv','Učenik')->first()->Id;
-        $ucenici=Korisnik::where('tipkorisnika_id',$tipid)->get();
+        $tipid=Tipkorisnika::where('Naziv','Učenik')->first()->id;
+        $ucenici=User::where('tipkorisnika_id',$tipid)->get();
         return view('ucenik.index',['ucenici'=>$ucenici]);
     }
 
@@ -47,7 +47,7 @@ class UcenikController extends Controller
      * @param  \App\Models\Ucenik  $ucenik
      * @return \Illuminate\Http\Response
      */
-    public function show(Ucenik $ucenik)
+    public function show(User $ucenik)
     {
         //
     }
@@ -58,7 +58,7 @@ class UcenikController extends Controller
      * @param  \App\Models\Ucenik  $ucenik
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ucenik $ucenik)
+    public function edit(User $ucenik)
     {
         //
     }
@@ -70,7 +70,7 @@ class UcenikController extends Controller
      * @param  \App\Models\Ucenik  $ucenik
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ucenik $ucenik)
+    public function update(Request $request, User $ucenik)
     {
         //
     }
@@ -81,7 +81,7 @@ class UcenikController extends Controller
      * @param  \App\Models\Ucenik  $ucenik
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ucenik $ucenik)
+    public function destroy(User $ucenik)
     {
         //
     }

@@ -3,65 +3,111 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
+use App\Models\Pismo;
 class PismoController extends Controller
 {
-    
-    public function index(){
-        $pisma=DB::table('pismo')->get();
-        return view('pismo.index',["pisma"=>$pisma]);
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $pisma=Pismo::all();
+        return view('pismo.index',compact('pisma'));
     }
 
-    public function show($id){
-        $pismo=DB::table('pismo')->where('Id',$id)->first();
-        return view('pismo.show',['pismo'=>$pismo]);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('pismo.create');
     }
 
-    public function update(Request $request){
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $request->validate([
-         'nazivPismoEdit'=>'required'
+            'nazivPismo'=>'required'
         ]);
-        $pismo=DB::table('pismo')
-                  ->where('Id',$request->id)->update([
-                  'Naziv'=>$request->nazivPismoEdit
-                   ]);
+        $pismo=Pismo::create([
+            'Naziv'=>$request->nazivPismo
+        ]);
         if($pismo){
-          return redirect()->route('pismo.index')->with('success','Pismo je uspješno ažurirano');
-           }else{
-          return redirect()->route('pismo.index')->with('fail','Pismo nije uspješno ažurirano');
-           }  
-    }
-    public function addPismo(){
-      return view('pismo.create');
+        return redirect()->route('pismo.index')->with('success','Novo pismo uspjesno dodato');
+    
+        }
+        return redirect()->route('pismo.index')->with('fail','Novo pismo nije uspjesno dodato');
     }
 
-    public function savePismo(Request $request){
-          $request->validate([
-           'nazivPismo'=>'required'
-          ]);
-         $pismo=DB::table('pismo')
-                  ->insert([
-                   'Naziv'=>$request->input('nazivPismo')  
-                  ]);
-          if($pismo){
-            return redirect()->route('pismo.index')->with('success','Pismo je uspješno dodato');
-          }else{
-            return redirect()->route('pismo.all')->with('fail','Pismo nije uspješno dodato');
-          }
-         
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $pismo=Pismo::findOrFail($id);
+        return view('pismo.edit',compact('pismo'));
+    }
 
-    public function destroy($id){
-        $pismo=DB::table("pismo")
-              ->where("Id",$id)
-              ->delete();
-              if($pismo){
-                return redirect()->route('pismo.index')->with("success","Pismo je uspješno obrisano");
-              }else{
-                return redirect()->route('pismo.index')->with("fail","Pismo nije uspješno obrisano");
-              }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nazivPismoEdit'=>'required'
+        ]);
+        $pismo=Pismo::findOrFail($id)->update([
+            'Naziv'=>$request->nazivPismoEdit
+        ]);
+        if($pismo){
+        return redirect()->route('pismo.index')->with('success','Novo pismo uspjesno azurirano');
+    
+        }
+        return redirect()->route('pismo.index')->with('fail','Novo pismo nije uspjesno azurirano');
+    
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $pismo=Pismo::where('id',$id)->delete();
+        if($pismo){
+            return redirect()->route('pismo.index')->with('success','Pismo je uspjesno obrisano');
+        
+            }
+            return redirect()->route('pismo.index')->with('fail','Pismo nije uspjesno obrisano');
         
     }
 }
