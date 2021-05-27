@@ -5,7 +5,7 @@
             <!-- Heading of content -->
             <div class="heading mt-[7px]">
                 <h1 class="pl-[30px] pb-[21px]  border-b-[1px] border-[#e4dfdf] ">
-                    Dashboard
+                    {{ Auth::user()->name }}
                 </h1>
             </div>
             <!-- Space for content -->
@@ -315,7 +315,7 @@
                             </div>
                         </div>
                         <div class="inline-block w-full mt-4">
-                            <a href="dashboardAktivnost.php" 
+                            <a href="dashboardAktivnost.php"
                                 class="btn-animation block text-center w-full px-4 py-2 text-sm tracking-wider text-gray-600 transition duration-300 ease-in border-[1px] border-gray-400 rounded hover:bg-gray-200 focus:outline-none focus:ring-[1px] focus:ring-gray-300">
                                 Show
                             </a>
@@ -410,7 +410,7 @@
                                         <td class="px-2 py-2">
                                             <a href="knjigaOsnovniDetalji.php">
                                                 Tom Sojer
-                                            </a>          
+                                            </a>
                                         </td>
                                         <td class="px-2 py-2">
                                             <span class="px-[10px] py-[3px] bg-gray-200 text-gray-800 px-[6px] py-[2px] rounded-[10px]">31.02.2021</span>
@@ -443,7 +443,7 @@
                                         Izdate knjige
                                     </a>
                                     <div class="ml-[30px] bg-green-600 transition duration-200 ease-in  hover:bg-green-900 stats-bar-green h-[26px]">
-                                    
+
                                     </div>
                                     <p class="ml-[10px] number-green text-[#2196f3] hover:text-blue-600">
                                         73
@@ -454,7 +454,7 @@
                                         Rezervisane knjige
                                     </a>
                                     <div class="ml-[30px] bg-yellow-600 transition duration-200 ease-in  hover:bg-yellow-900 stats-bar-yellow  h-[26px]">
-                                    
+
                                     </div>
                                     <p class="ml-[10px] text-[#2196f3] hover:text-blue-600 number-yellow">
                                         44
@@ -465,7 +465,7 @@
                                         Knjige u prekoracenju
                                     </a>
                                     <div class="ml-[30px] bg-red-600 transition duration-200 ease-in hover:bg-red-900 stats-bar-red h-[26px]">
-                                    
+
                                     </div>
                                     <p class="ml-[10px] text-[#2196f3] hover:text-blue-600 number-red">
                                         25

@@ -46,7 +46,7 @@
             <!-- Space for content -->
             <div class="scroll height-content section-content">
                 <form action="{{route('knjiga.update',$knjiga->id)}}"  method="post" class="text-gray-700 forma">
-                    @csrf 
+                    @csrf
                     @method('PUT')
                     <div class="container" id="tab2c">
                     <div class="flex flex-row ml-[30px] mb-[150px]">
@@ -77,7 +77,7 @@
                                     <option value="{{$kat->id}}">
                                     {{$kat->Naziv}}
                                     </option>
-                                 @endforeach  
+                                 @endforeach
                                 </select>
 
                                 <div x-data="dropdown()" x-init="loadOptionsEdit()" class="flex flex-col w-[90%]">
@@ -168,9 +168,9 @@
                                  @error('kategorije')@php echo "Kategorija je obavezno polje"; @endphp @enderror
                                  </div>
                         </div>
-                            
-                           
-    
+
+
+
 
                         <div class="mt-[20px]">
                             <p>Izaberite zanrove <span class="text-red-500">*</span></p>
@@ -268,7 +268,7 @@
                                  </div>
                     </div>
                     </div>
-                 
+
             <div class="w-[50%]">
                 <div class="mt-[20px]">
                     <p>Izaberite autore <span class="text-red-500">*</span></p>
@@ -276,7 +276,7 @@
                     <select x-cloak id="autoriEdit" >
                         <option></option>
                         @foreach($autori as $autor)
-                    <option value="{{$autor->id}}">{{$autor->ImePrezime}}</option>
+                    <option value="{{$autor->id}}" selected>{{$autor->ImePrezime}}</option>
                     @endforeach
                     </select>
                     <div x-data="dropdown()" x-init="loadOptionsAutoriEdit()" class="flex flex-col w-[90%]">
@@ -401,7 +401,7 @@
 
             <div class="mt-[20px]">
                 <p>Kolicina <span class="text-red-500">*</span></p>
-                <input type="text" name="knjigaKolicinaEdit" id="knjigaKolicinaEdit" 
+                <input type="text" name="knjigaKolicinaEdit" id="knjigaKolicinaEdit"
                 value="{{$knjiga->UkupnoPrimjeraka}}"
                     class="flex w-[45%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]"
                     />
@@ -413,7 +413,7 @@
             </div>
             </div>
 <!--------------------------end osnovni detalji------------------------------------------>
-<!---------------------- specifikacija edit start -----------------------------> 
+<!---------------------- specifikacija edit start ----------------------------->
 <div class="container" id="tab1c">
 <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[150px]">
@@ -478,11 +478,11 @@
                                         {{$jezik->Naziv}}
                                     </option>
                                @endforeach
-                                   
+
                                 </select>
                                 <div class="fail" id="validatePismo">
                                 @error('jezik')@php echo "Jezik je obavezno polje"; @endphp @enderror
-                                                       
+
                                 </div>
                             </div>
                             <div class="mt-[20px]">

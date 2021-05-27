@@ -19,7 +19,7 @@ class User extends Authenticatable
     public function knjigas(){
         return $this->belongsToMany(Knjiga::class);
     }
-protected $fillable=['tipkorisnika_id','password','ImePrezime','KorisnickoIme','Email'];
+protected $fillable=['tipkorisnika_id','password','ImePrezime','KorisnickoIme','Email', 'JMBG'];
 protected $hidden = [
         'password',
         'remember_token',

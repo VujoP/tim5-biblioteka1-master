@@ -25,8 +25,8 @@ use App\Http\Controllers\KategorijaController;
 */
 
 // Dodajemo middleware za odredjivanje vidljivosti ruta
-Route::middleware(['auth'])->group(function(){
-});
+Route::middleware(['auth', 'prava.pristupa'])->group(function(){
+
 //Route::get('/settings',[PismoController::class,'index')->name('settings');
 Route::get('/settings',function(){
     return view('polisa.index');
@@ -72,7 +72,6 @@ Route::resource('ucenik',UcenikController::class);
     return view('dashboard.index');
 })->name('dashboard');
 
-Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -88,3 +87,8 @@ Route::get('knjiga-{knjiga}/specifikacija',[KnjigaController::class,'spec'])->na
 Route::resource('zanr',ZanrController::class);
 //Route za kategoriju
 Route::resource('kategorija',KategorijaController::class);
+
+Route::get('profile',[BibliotekarController::class,'profile'])->name('profile');
+});
+
+Auth::routes();

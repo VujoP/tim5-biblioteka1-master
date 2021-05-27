@@ -6,6 +6,7 @@ use App\Models\Bibliotekar;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Tipkorisnika;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 class BibliotekarController extends Controller
 {
@@ -15,7 +16,7 @@ class BibliotekarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $idb=Tipkorisnika::where('Naziv','Bibliotekar')->first()->id;
         $bib=User::where('tipkorisnika_id',$idb)->get();
         return view('bibliotekar.index',['bib'=>$bib]);
@@ -63,7 +64,7 @@ class BibliotekarController extends Controller
           return redirect()->route('bibliotekar.index')->with('fail','Bibliotekar nije uspjesno dodat');
         }
 
-    
+
     }
 
     /**
@@ -75,7 +76,7 @@ class BibliotekarController extends Controller
     public function show(User $bibliotekar)
     {
         $bibliotekar=User::where('Id',$bibliotekar->id)->first();
-    
+
         return view('bibliotekar.show',['b'=>$bibliotekar]);
     }
 
@@ -124,7 +125,7 @@ class BibliotekarController extends Controller
             }else{
               return redirect()->route('bibliotekar.index')->with('fail','Bibliotekar nije uspjesno azuriran');
             }
-    
+
     }
 
     /**
@@ -141,6 +142,11 @@ class BibliotekarController extends Controller
           }else{
             return redirect()->route('bibliotekar.index')->with('fail','Bibliotekar nije uspjesno obrisan');
           }
-  
+
+    }
+
+    public function profile(){
+        $user =  Auth::user();
+        return view('dashboard.profile',compact('user'));
     }
 }

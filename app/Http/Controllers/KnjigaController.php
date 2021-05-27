@@ -24,7 +24,7 @@ class KnjigaController extends Controller
      */
     public function index()
     {
-        
+
         $knjige=Knjiga::with(['autors','zanrs','kategorijas'])->get();
         return view('knjiga.index',['knjige'=>$knjige]);
     }
@@ -88,7 +88,7 @@ class KnjigaController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
          'nazivKnjiga'=>'required',
          'kategorije'=>'required',
@@ -105,7 +105,7 @@ class KnjigaController extends Controller
          'pismo'=>'required',
          'isbn'=>'required|min:20|max:20'
         ]);
-        
+
         $autori=explode(',',$request->autori);
         $zanri=explode(',',$request->zanrovi);
         $kategorije=explode(',',$request->kategorije);
@@ -122,7 +122,7 @@ class KnjigaController extends Controller
             'Sadrzaj'=>$request->kratki_sadrzaj,
             'ISBN'=>$request->isbn
            ]);
-          
+
            foreach($autori as $autor):
            $knjiga->autors()->attach($autor);
            endforeach;
@@ -136,7 +136,7 @@ class KnjigaController extends Controller
             return redirect()->route('knjiga.index')->with('success','Nova knjige je uspjesno dodata');
            }
             return redirect()->route('knjiga.index')->with('fail','Nova knjige nije uspjesno dodata');
-           
+
     }
 
     /**
@@ -146,13 +146,13 @@ class KnjigaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Knjiga $knjiga)
-    {  
+    {
         $knjiga=Knjiga::with('autors','zanrs','kategorijas')->where('id',$knjiga->id)->first();
         return view('knjiga.show',compact('knjiga'));
     }
    public function spec(Knjiga $knjiga){
         $knjiga=Knjiga::with('autors','zanrs','kategorijas')->where('id',$knjiga->id)->first();
-    
+
         return view('knjiga.spec',compact('knjiga'));
     }
 
@@ -195,7 +195,7 @@ class KnjigaController extends Controller
      */
     public function update(Request $request, Knjiga $knjiga)
     {
-       
+
         $request->validate([
             'nazivKnjigaEdit'=>'required',
             'kategorije'=>'required',
@@ -211,11 +211,11 @@ class KnjigaController extends Controller
             'povez'=>'required',
             'isbnEdit'=>'required|min:20|max:20'
         ]);
-    
+
         $autori=explode(',',$request->autori);
         $zanri=explode(',',$request->zanrovi);
         $kategorije=explode(',',$request->kategorije);
-       
+
         $knjiga1=Knjiga::find($knjiga->id);
         $knjiga1->Naslov=$request->nazivKnjigaEdit;
         $knjiga1->izdavac_id=$request->izdavacEdit;
@@ -229,15 +229,15 @@ class KnjigaController extends Controller
         $knjiga1->Sadrzaj=$request->kratki_sadrzaj;
         $knjiga1->ISBN=$request->isbnEdit;
         $knjiga=$knjiga1->save();
-        
+
         $knjiga1->autors()->sync(array_values($autori));
         $knjiga1->zanrs()->sync(array_values($zanri));
         $knjiga1->kategorijas()->sync(array_values($kategorije));
         if($knjiga){
             return redirect()->route('knjiga.index')->with('success','Knjige je uspjesno azurirana');
-           }else{
+        }else{
             return redirect()->route('knjiga.index')->with('fail','Knjige nije uspjesno azurirana');
-           }
+        }
     }
 
     /**
