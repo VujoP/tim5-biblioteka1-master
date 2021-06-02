@@ -16,7 +16,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                 <li>
-                                        <a href="settingsPolisa.php" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('polisa.index')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Settings
                                         </a>
                                     </li>
@@ -57,14 +57,17 @@
                
             </div>
             @endif-->
-                <form method="post" action="{{route('pismo.save')}}"  class="text-gray-700 forma">
+                <form method="post" action="{{route('pismo.store')}}"  class="text-gray-700 forma">
                     @csrf 
+                    @method('POST') 
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[150px]">
                             <div class="mt-[20px]">
                                 <p>Naziv pisma <span class="text-red-500">*</span></p>
                                 <input  type="text"  name="nazivPismo" id="nazivPismo" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" />
-                                <div class="fail" id="validateNazivPismo">@error('nazivPismo')@php echo'Polje naziv pisma je obavezno'; @endphp @enderror</div>
+                                <div class="fail" id="validateNazivPismo">
+                                @error('nazivPismo')@php echo'Polje naziv pisma je obavezno'; @endphp @enderror
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -8,7 +8,7 @@
                     <div class="pl-[30px] py-[10px] flex flex-col">
                         <div>
                             <h1>
-                                {{$b->ImePrezime}}
+                                {{$bibliotekar->ImePrezime}}
                             </h1>
                         </div>
                         <div>
@@ -23,8 +23,8 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="{{route('bibliotekar.edit',$b->Id)}}" class="text-[#2196f3] hover:text-blue-600">
-                                            ID-{{$b->Id}}
+                                        <a href="{{route('bibliotekar.edit',$bibliotekar)}}" class="text-[#2196f3] hover:text-blue-600">
+                                            ID-{{$bibliotekar->id}}
                                         </a>
                                     </li>
                                 </ol>
@@ -36,7 +36,7 @@
                             <i class="fas fa-redo-alt mr-[3px]"></i>
                             Resetuj sifru
                         </a>
-                        <a href="{{route('bibliotekar.edit',$b->Id)}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
+                        <a href="{{route('bibliotekar.edit',$bibliotekar)}}" class="hover:text-blue-600 inline ml-[20px] pr-[10px]">
                             <i class="fas fa-edit mr-[3px] "></i>
                             Izmjeni podatke
                         </a>
@@ -50,7 +50,7 @@
                             <div class="absolute right-0 w-56 mt-[10px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                 aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                 <div class="py-1">
-                                    <form action="{{route('bibliotekar.destroy',$b->Id)}}" tabindex="0" method="post"
+                                    <form action="{{route('bibliotekar.destroy',$bibliotekar->id)}}" tabindex="0" method="post"
                                         class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                         role="menuitem">
                                         @csrf 
@@ -71,24 +71,24 @@
                     <div class="mr-[30px]">
                         <div class="mt-[20px]">
                             <span class="text-gray-500">Ime i prezime</span>
-                            <p class="font-medium">{{$b->ImePrezime}}</p>
+                            <p class="font-medium">{{$bibliotekar->ImePrezime}}</p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500">Tip korisnika</span>
-                            <p class="font-medium">{{$b->tipkorisnika->Naziv}}</p>
+                            <p class="font-medium">{{$bibliotekar->tipkorisnika->Naziv}}</p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500">JMBG</span>
-                            <p class="font-medium">{{$b->JMBG}}</p>
+                            <p class="font-medium">{{$bibliotekar->JMBG}}</p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500">Email</span>
                             <a
-                                class="cursor-pointer block font-medium text-[#2196f3] hover:text-blue-600">{{$b->Email}}</a>
+                                class="cursor-pointer block font-medium text-[#2196f3] hover:text-blue-600">{{$bibliotekar->email}}</a>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500">Korisnicko ime</span>
-                            <p class="font-medium">{{$b->KorisnickoIme}}</p>
+                            <p class="font-medium">{{$bibliotekar->KorisnickoIme}}</p>
                         </div>
                         <div class="mt-[40px]">
                             <span class="text-gray-500">Broj logovanja</span>

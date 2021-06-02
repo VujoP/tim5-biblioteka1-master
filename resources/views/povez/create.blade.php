@@ -16,7 +16,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                 <li>
-                                        <a href="settingsPolisa.php" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('polisa.index')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Settings
                                         </a>
                                     </li>
@@ -45,8 +45,9 @@
             
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form method="post" action="{{route('povez.save')}}" class="text-gray-700 forma">
+                <form method="post" action="{{route('povez.store')}}" class="text-gray-700 forma">
                    @csrf
+                   @method('POST')
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[150px]">
                             <div class="mt-[20px]">

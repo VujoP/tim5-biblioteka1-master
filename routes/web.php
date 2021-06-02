@@ -10,7 +10,11 @@ use App\Http\Controllers\KorisnikController;
 use App\Http\Controllers\BibliotekarController;
 use App\Http\Controllers\TipkorisnikaController;
 use App\Http\Controllers\UcenikController;
-
+use App\Http\Controllers\KnjigaController;
+use App\Http\Controllers\ZanrController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\KategorijaController;
+use App\Http\Controllers\PolisaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,46 +25,28 @@ use App\Http\Controllers\UcenikController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Dodajemo middleware za odredjivanje vidljivosti ruta
+/*Route::middleware(['auth'])->group(function(){
+});*/
+// kraj route za dashboard
 // Route za dashboard
 Route::get("/",function(){
     return view('dashboard.index');
 })->name('dashboard');
-//Route::get('/settings',[PismoController::class,'index')->name('settings');
-Route::get('/settings',function(){
-    return view('polisa.index');
-})->name('settings');
-// kraj route za dashboard
-Route::get('/pismo',[PismoController::class,'index'])->name('pismo.index');
-Route::get("/pismo/{id}",[PismoController::class,'show'])->name('pismo.edit');
-Route::post("/pismo-update",[PismoController::class,'update'])->name('pismo.update');
-Route::get("/pismo/delete/{id}",[PismoController::class,'destroy'])->name('pismo.delete');
-Route::get("/addPismo",[PismoController::class,'addPismo'])->name('pismo.add');
-Route::post("/savePismo",[PismoController::class,'savePismo'])->name('pismo.save');
-
-Route::get('/povez',[PovezController::class,'index'])->name('povez.index');
-Route::get('/povez/{id}',[PovezController::class,'show'])->name('povez.edit');
-Route::post('/povez-update',[PovezController::class,'update'])->name('povez.update');
-Route::get('/addPovez',[PovezController::class,'addPovez'])->name('povez.create');
-Route::post('/addPovez',[PovezController::class,'savePovez'])->name('povez.save');
-Route::get("/povez/delete/{id}",[PovezController::class,'destroy'])->name('povez.delete');
-
-Route::get('/format',[FormatController::class,'index'])->name('format.index');
-Route::get('/format/{id}',[FormatController::class,'show'])->name('format.edit');
-Route::post('/format-update',[FormatController::class,'update'])->name('format.update');
-Route::get('/addFromat',[FormatController::class,'addFormat'])->name('format.create');
-Route::post('/addFormat',[FormatController::class,'saveFormat'])->name('format.save');
-Route::get("/format/delete/{id}",[FormatController::class,'destroy'])->name('format.delete');
-
-// route za izdavac
-/*
-Route::get('/izdavac',[IzdavacController::class,'index'])->name('izdavac.index');
-Route::get('/addIzdavac',[IzdavacController::class,'addIzdavac'])->name('izdavac.create');
-Route::post('/addIzdavac',[IzdavacController::class,'saveIzdavac'])->name('izdavac.save');
-Route::get('/izdavac/{id}',[IzdavacController::class,'show'])->name('izdavac.edit');
-Route::post('/izdavac-update',[IzdavacController::class,'update'])->name('izdavac.update');
-Route::get('/izdavac/delete/{id}',[IzdavacController::class,'delete'])->name('izdavac.delete');
-*/
-
+//Auth::routes();
+//Route za Polisa
+Route::resource('polisa',PolisaController::class);
+//Route za Pismo
+Route::resource('pismo',PismoController::class);
+//Route za Format
+Route::resource('format',FormatController::class);
+//Route za Povez
+Route::resource('povez',PovezController::class);
+//Route za Zanr
+Route::resource('zanr',ZanrController::class);
+//Route za Kategoriju
+Route::resource('kategorija',KategorijaController::class);
 // route za Izdavac
 Route::resource('izdavac',IzdavacController::class);
 //Route za Autor
@@ -70,5 +56,20 @@ Route::resource('bibliotekar',BibliotekarController::class);
 // Route za Ucenika
 Route::resource('ucenik',UcenikController::class);
 
+//Route za knjigu
+Route::get('knjiga0',[KnjigaController::class,'create0']);
+Route::resource('knjiga',KnjigaController::class);
+Route::get('knjiga-{knjiga}/specifikacija',[KnjigaController::class,'spec'])->name('knjiga.spec');
+Route::post('rezervisi/{knjiga}',[KnjigaController::class,'rezervisi'])->name('knjiga.rezervisi');
+Route::get('rezervacija/{knjiga}',[KnjigaController::class,'rezervacija'])->name('knjiga.rezervacija');
+Route::get('izdavanje/{knjiga}',[KnjigaController::class,'izdavanje'])->name('knjiga.izdavanje');
+Route::post('izdaj/{knjiga}',[KnjigaController::class,'izdaj'])->name('knjiga.izdaj');
+Route::get('iznajmljena/{knjiga}',[KnjigaController::class,'iznajmljena'])->name('knjiga.iznajmljena');
+Route::get('vracanje/{knjiga}',[KnjigaController::class,'vracanje'])->name('knjiga.vracanje');
+Route::post('vrati/{knjiga}',[KnjigaController::class,'vrati'])->name('knjiga.vrati');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Auth::routes();
+
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

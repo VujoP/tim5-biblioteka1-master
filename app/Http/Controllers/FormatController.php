@@ -3,56 +3,113 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Format;
 class FormatController extends Controller
 {
-    public function index(){
-      $formati=DB::table('format')->get();
-      return view('format.index',["formati"=>$formati]);
-    }
-    public function show($id){
-      $format=DB::table('format')
-                ->where('Id',$id)
-                ->first();
-      return view('format.show',['format'=>$format]);
-    }
-    public function update(Request $request){
-          $request->validate([
-            'nazivFormatEdit'=>'required'
-          ]);
-          $format=DB::table('format')
-                    ->where('Id',$request->input('id'))
-                    ->update([
-                    'Naziv'=>$request->input('nazivFormatEdit')
-                    ]);
-          if($format){
-                return redirect()->route('format.index')->with('success','Format je uspješno ažuriran');      
-              }else{
-                return redirect()->route('format.index')->with('fail','Format je neuspješno ažuriran');
-              }
-    }
-    public function addFormat(){
-      return view('format.create');
-    }
-    public function saveFormat(Request $request){
-       $request->validate([
-       'nazivFormat'=>'required'
-       ]);
-       $format=DB::table('format')
-         ->insert([
-         'Naziv'=>$request->input('nazivFormat')
-         ]);
-         if($format){
-          return redirect()->route('format.index')->with('success','Format je uspješno dodat');
-         }else{
-           return redirect()->route('format.index')->with('fail','Format nije uspješno dodat');
-         }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $formati=Format::all();
+        return view('format.index',compact('formati'));
     }
 
-    public function destroy($id){
-      $format=DB::table('format')
-              ->where('Id',$id)
-              ->delete();
-      return redirect()->route('format.index')->with("success","Format je uspješno izbrisan");
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('format.create');
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nazivFormat'=>'required'
+        ]);
+        $format=Format::create([
+            'Naziv'=>$request->nazivFormat
+        ]);
+        if($format){
+        return redirect()->route('format.index')->with('success','Novo format uspjesno dodat');
+    
+        }
+        return redirect()->route('format.index')->with('fail','Novo format nije uspjesno dodat');
+    
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $format=Format::findOrFail($id);
+        return view('format.edit',compact('format'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nazivFormatEdit'=>'required'
+        ]);
+        $format=Format::findOrFail($id)->update([
+            'Naziv'=>$request->nazivFormatEdit
+        ]);
+        if($format){
+        return redirect()->route('format.index')->with('success','Novo format uspjesno azuriran');
+    
+        }
+        return redirect()->route('format.index')->with('fail','Novo format nije uspjesno azuriran');
+    
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $format=Format::where('id',$id)->delete();
+        if($format){
+            return redirect()->route('format.index')->with('success','Format je uspjesno obrisan');
+        
+            }
+            return redirect()->route('format.index')->with('fail','Format nije uspjesno obrisan');
+        
+    }
+    
 }

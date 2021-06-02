@@ -12,13 +12,13 @@
                 </div>
             </div>
             <div class="py-4 text-gray-500 border-b-[1px] border-[#e4dfdf] pl-[30px]">
-                <a href="settingsPolisa.php" class="inline hover:text-blue-800">
+                <a href="{{route('polisa.create')}}" class="inline hover:text-blue-800">
                     Polisa
                 </a>
-                <a href="settingsKategorije.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('kategorija.index')}}" class="inline ml-[70px] hover:text-blue-800">
                     Kategorije
                 </a>
-                <a href="settingsZanrovi.php" class="inline ml-[70px] hover:text-blue-800">
+                <a href="{{route('zanr.index')}}" class="inline ml-[70px] hover:text-blue-800">
                     Zanrovi
                 </a>
                 <a href="{{route('izdavac.index')}}" class="inline ml-[70px] hover:text-blue-800">
@@ -48,7 +48,7 @@
             </div>
             @endif
                 <div class="flex items-center px-[50px] py-8 space-x-3 rounded-lg">
-                    <a href="{{route('pismo.add')}}"
+                    <a href="{{route('pismo.create')}}"
                         class="btn-animation inline-flex items-center text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] tracking-wider text-white bg-[#3f51b5] rounded hover:bg-[#4558BE]">
                         <i class="fas fa-plus mr-[15px]"></i> Novo pismo
                     </a>
@@ -90,21 +90,22 @@
                                         <div class="absolute right-[25px] w-56 mt-[7px] origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                                             aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                                             <div class="py-1">
-                                                <a href="{{route('pismo.edit',$p->Id)}}" tabindex="0"
+                                                <a href="{{route('pismo.edit',$p->id)}}" tabindex="0"
                                                     class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                     role="menuitem">
                                                     <i class="fas fa-edit mr-[1px] ml-[5px] py-1"></i>
                                                     <span class="px-4 py-0">Izmijeni pismo</span>
                                                 </a>
-                                                <a href="{{route('pismo.delete',$p->Id)}}"  tabindex="0"
-                                                    class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
+                                                <form action="{{route('pismo.destroy',$p->id)}}"  tabindex="0"
+                                              method="post"      class="flex w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 outline-none hover:text-blue-600"
                                                     role="menuitem">
-                                                    <form action="{{route('pismo.delete',$p->Id)}}" method="post">
+                                                    @csrf 
+                                                    @method('DELETE')
                                                 
-                                                    <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
+                                                   <button type="submit"> <i class="fa fa-trash mr-[5px] ml-[5px] py-1"></i>
                                                     <span class="px-4 py-0">Izbrisi pismo</span>
-                                                    
-                                                </a>
+                                                    </button>
+                                                </form>
                                                 
                                             </div>
                                         </div>

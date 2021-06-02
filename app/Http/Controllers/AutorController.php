@@ -59,7 +59,7 @@ class AutorController extends Controller
      */
     public function show(Autor $autor)
     {
-        $autor=Autor::findOrFail($autor->Id);
+        $autor=Autor::findOrFail($autor->id);
         return view('autor.show',['autor'=>$autor]);
     }
 
@@ -71,7 +71,7 @@ class AutorController extends Controller
      */
     public function edit(Autor $autor)
     {
-        $autor=Autor::findOrFail($autor->Id);
+        $autor=Autor::findOrFail($autor->id);
         return view('autor.edit',['autor'=>$autor]);
     }
 
@@ -88,7 +88,7 @@ class AutorController extends Controller
             'imePrezimeAutorEdit'=>'required',
             'opis_autor_edit'=>'required'
             ]);
-            $autor=Autor::where('Id',$autor->Id)->update([
+            $autor=Autor::where('id',$autor->id)->update([
             'ImePrezime'=>$request->imePrezimeAutorEdit,
             'Biografija'=>$request->opis_autor_edit
             ]);
@@ -108,7 +108,7 @@ class AutorController extends Controller
      */
     public function destroy(Autor $autor)
     {
-        $autor=Autor::where('Id',$autor->Id)->delete();
+        $autor=Autor::where('id',$autor->id)->delete();
         if($autor){
             return redirect()->route('autor.index')->with('success','Autor je uspjesno obrisan');
            }else{

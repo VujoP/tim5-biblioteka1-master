@@ -23,7 +23,7 @@
                                         <span class="mx-2">/</span>
                                     </li>
                                     <li>
-                                        <a href="{{route('bibliotekar.edit',$b->Id)}}" class="text-gray-400 hover:text-blue-600">
+                                        <a href="#" class="text-gray-400 hover:text-blue-600">
                                             Izmijeni podatke
                                         </a>
                                     </li>
@@ -35,14 +35,14 @@
             </div>
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form action="{{route('bibliotekar.update',$b->Id)}}" method="post" class="text-gray-700 text-[14px] forma">
+                <form action="{{route('bibliotekar.update',$bibliotekar->id)}}" method="post" class="text-gray-700 text-[14px] forma">
                     @csrf 
                     @method('PUT')
                     <div class="flex flex-row ml-[30px]">
                         <div class="w-[50%] mb-[100px]">
                             <div class="mt-[20px]">
                                 <span>Ime i prezime <span class="text-red-500">*</span></span>
-                                <input type="text" name="imePrezimeBibliotekarEdit" id="imePrezimeBibliotekarEdit" value="{{$b->ImePrezime}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameBibliotekarEdit()"/>
+                                <input type="text" name="imePrezimeBibliotekarEdit" id="imePrezimeBibliotekarEdit" value="{{$bibliotekar->ImePrezime}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameBibliotekarEdit()"/>
                                 <div class="fail" id="validateNameBibliotekarEdit">
                                 @error('imePrezimeBibliotekarEdit')@php echo "Ime i prezime bibliotekara je obavezno polje"; @endphp @enderror
                              
@@ -52,8 +52,9 @@
                             <div class="mt-[20px]">
                                 <span>Tip korisnika</span>
                                 <select class="flex w-[90%] mt-2 px-2 py-2 border bg-gray-300 border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#576cdf]" name="tip_korisnika" >
+                                    <option></option>
                                     @foreach($tip as $t)
-                                    <option value="{{$t->Id}}">
+                                    <option @php if($t->Naziv==$bibliotekar->tipkorisnika->Naziv){echo 'selected';} @endphp value="{{$t->id}}">
                                      {{$t->Naziv}}  
                                     </option>
                                    @endforeach
@@ -66,7 +67,7 @@
 
                             <div class="mt-[20px]">
                                 <span>JMBG <span class="text-red-500">*</span></span>
-                                <input type="text" name="jmbgBibliotekarEdit" id="jmbgBibliotekarEdit" value="{{$b->JMBG}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgBibliotekarEdit()"/>
+                                <input type="text" name="jmbgBibliotekarEdit" id="jmbgBibliotekarEdit" value="{{$bibliotekar->JMBG}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgBibliotekarEdit()"/>
                                 <div class="fail" id="validateJmbgBibliotekarEdit">
                                 @error('jmbgBibliotekarEdit')@php echo "JMBG bibliotekara je obavezno polje"; @endphp @enderror
                              
@@ -75,7 +76,7 @@
 
                             <div class="mt-[20px]">
                                 <span>E-mail <span class="text-red-500">*</span></span>
-                                <input type="email" name="emailBibliotekarEdit" id="emailBibliotekarEdit" value="{{$b->Email}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailBibliotekarEdit()"/>
+                                <input type="email" name="emailBibliotekarEdit" id="emailBibliotekarEdit" value="{{$bibliotekar->email}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailBibliotekarEdit()"/>
                                 <div class="fail" id="validateEmailBibliotekarEdit">
                                 @error('emailBibliotekarEdit')@php echo "Email bibliotekara je obavezno polje"; @endphp @enderror
                              
@@ -84,7 +85,7 @@
 
                             <div class="mt-[20px]">
                                 <span>Korisnicko ime <span class="text-red-500">*</span></span>
-                                <input type="text" name="usernameBibliotekarEdit" id="usernameBibliotekarEdit" value="{{$b->KorisnickoIme}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameBibliotekarEdit()"/>
+                                <input type="text" name="usernameBibliotekarEdit" id="usernameBibliotekarEdit" value="{{$bibliotekar->KorisnickoIme}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameBibliotekarEdit()"/>
                                 <div class="fail" id="validateUsernameBibliotekarEdit">
                                 @error('usernameBibliotekarEdit')@php echo "Korisnicko ime bibliotekara je obavezno polje"; @endphp @enderror
                              
@@ -93,7 +94,7 @@
 
                             <div class="mt-[20px]">
                                 <span>Sifra <span class="text-red-500">*</span></span>
-                                <input type="password" name="pwBibliotekarEdit" id="pwBibliotekarEdit" value="{{$b->Sifra}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekarEdit()"/>
+                                <input type="password" name="pwBibliotekarEdit" id="pwBibliotekarEdit" value="{{$bibliotekar->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekarEdit()"/>
                                 <div class="fail" id="validatePwBibliotekarEdit">
                                 @error('pwBibliotekarEdit')@php echo "Sifra bibliotekara je obavezno polje"; @endphp @enderror
                              
@@ -102,7 +103,7 @@
 
                             <div class="mt-[20px]">
                                 <span>Ponovi sifru <span class="text-red-500">*</span></span>
-                                <input type="password" name="pw2BibliotekarEdit" id="pw2BibliotekarEdit" value="{{$b->Sifra}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2BibliotekarEdit()"/>
+                                <input type="password" name="pw2BibliotekarEdit" id="pw2BibliotekarEdit" value="{{$bibliotekar->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPw2BibliotekarEdit()"/>
                                
                                 <div class="fail" id="validatePw2BibliotekarEdit">
                                 @error('pw2BibliotekarEdit')@php echo "Ponovljena sifra bibliotekara je obavezno polje i mora da se poklapa sa gornjom sifrom"; @endphp @enderror

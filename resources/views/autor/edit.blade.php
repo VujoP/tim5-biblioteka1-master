@@ -15,7 +15,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                     <li>
-                                        <a href="autori.php" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('autor.index')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Evidencija autora
                                         </a>
                                     </li>
@@ -36,7 +36,7 @@
             
             <!-- Space for content onkeydown="clearErrorsImePrezimeAutorEdit()" -->
             <div class="scroll height-content section-content">
-                <form action="{{route('autor.update',$autor->Id)}}" method="post" class="text-gray-700 forma">
+                <form action="{{route('autor.update',$autor->id)}}" method="post" class="text-gray-700 forma">
                     @csrf 
                     @method('PUT')
                     <div class="flex flex-row ml-[30px]">

@@ -15,7 +15,7 @@
                             <nav class="w-full rounded">
                                 <ol class="flex list-reset">
                                 <li>
-                                        <a href="settingsPolisa.php" class="text-[#2196f3] hover:text-blue-600">
+                                        <a href="{{route('polisa.index')}}" class="text-[#2196f3] hover:text-blue-600">
                                             Settings
                                         </a>
                                     </li>
@@ -44,7 +44,7 @@
             
             <!-- Space for content -->
             <div class="scroll height-content section-content">
-                <form action="{{route('izdavac.update',$izdavac->Id)}}" method="post" class="text-gray-700 forma">
+                <form action="{{route('izdavac.update',$izdavac->id)}}" method="post" class="text-gray-700 forma">
                 @csrf
                 @method('PUT')
                 

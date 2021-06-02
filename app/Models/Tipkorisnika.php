@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tipkorisnika extends Model
 {
     use HasFactory;
-    public function korisnik(){
-        return $this->hasMany(Korisnik::class);
+    public function user(){
+        return $this->hasMany(User::class);
     }
 }
