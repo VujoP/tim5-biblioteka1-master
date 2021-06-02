@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-          
+
                 <div class="inline-block min-w-full px-[50px] pt-3 align-middle bg-white rounded-bl-lg rounded-br-lg shadow-dashboard">
                     <table class="min-w-full shadow-lg" id="myTable">
                         <thead class="bg-[#EFF3F6]">
@@ -111,8 +111,8 @@
                                         </div>
                                     </div>
                                 </td>
-                            
-                            
+
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -143,7 +143,7 @@
                                 </option>
                             </select>
                         </div>
-                        
+
                         <div>
                             <nav class="relative z-0 inline-flex">
                                 <div>
@@ -166,12 +166,12 @@
                                     </a>
                                 </div>
                             </nav>
-                        </div>   
+                        </div>
                     </div>
 
                 </div>
             </div>
-        
+
         </section>
         <!-- End Content -->
 @endsection

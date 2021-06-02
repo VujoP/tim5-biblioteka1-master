@@ -73,3 +73,4 @@ Route::post('vrati/{knjiga}',[KnjigaController::class,'vrati'])->name('knjiga.vr
 
 //Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Auth::routes();

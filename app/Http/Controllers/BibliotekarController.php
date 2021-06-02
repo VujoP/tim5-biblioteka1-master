@@ -63,7 +63,7 @@ class BibliotekarController extends Controller
           return redirect()->route('bibliotekar.index')->with('fail','Bibliotekar nije uspjesno dodat');
         }
 
-    
+
     }
 
     /**
@@ -123,7 +123,7 @@ class BibliotekarController extends Controller
             }else{
               return redirect()->route('bibliotekar.index')->with('fail','Bibliotekar nije uspjesno azuriran');
             }
-    
+
     }
 
     /**
@@ -140,6 +140,11 @@ class BibliotekarController extends Controller
           }else{
             return redirect()->route('bibliotekar.index')->with('fail','Bibliotekar nije uspjesno obrisan');
           }
-  
+
+    }
+
+    public function profile(){
+        $user =  Auth::user();
+        return view('dashboard.profile',compact('user'));
     }
 }

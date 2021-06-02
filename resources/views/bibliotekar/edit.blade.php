@@ -45,7 +45,7 @@
                                 <input type="text" name="imePrezimeBibliotekarEdit" id="imePrezimeBibliotekarEdit" value="{{$bibliotekar->ImePrezime}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsNameBibliotekarEdit()"/>
                                 <div class="fail" id="validateNameBibliotekarEdit">
                                 @error('imePrezimeBibliotekarEdit')@php echo "Ime i prezime bibliotekara je obavezno polje"; @endphp @enderror
-                             
+
                                 </div>
                             </div>
 
@@ -61,7 +61,7 @@
                                 </select>
                                 <div class="fail" id="validateNameBibliotekarEdit">
                                 @error('tip_korisnika')@php echo "Tip korisnika je obavezno polje"; @endphp @enderror
-                             
+
                                 </div>
                             </div>
 
@@ -70,7 +70,7 @@
                                 <input type="text" name="jmbgBibliotekarEdit" id="jmbgBibliotekarEdit" value="{{$bibliotekar->JMBG}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsJmbgBibliotekarEdit()"/>
                                 <div class="fail" id="validateJmbgBibliotekarEdit">
                                 @error('jmbgBibliotekarEdit')@php echo "JMBG bibliotekara je obavezno polje"; @endphp @enderror
-                             
+
                                 </div>
                             </div>
 
@@ -79,7 +79,7 @@
                                 <input type="email" name="emailBibliotekarEdit" id="emailBibliotekarEdit" value="{{$bibliotekar->email}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsEmailBibliotekarEdit()"/>
                                 <div class="fail" id="validateEmailBibliotekarEdit">
                                 @error('emailBibliotekarEdit')@php echo "Email bibliotekara je obavezno polje"; @endphp @enderror
-                             
+
                                 </div>
                             </div>
 
@@ -88,7 +88,7 @@
                                 <input type="text" name="usernameBibliotekarEdit" id="usernameBibliotekarEdit" value="{{$bibliotekar->KorisnickoIme}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsUsernameBibliotekarEdit()"/>
                                 <div class="fail" id="validateUsernameBibliotekarEdit">
                                 @error('usernameBibliotekarEdit')@php echo "Korisnicko ime bibliotekara je obavezno polje"; @endphp @enderror
-                             
+
                                 </div>
                             </div>
 
@@ -97,7 +97,7 @@
                                 <input type="password" name="pwBibliotekarEdit" id="pwBibliotekarEdit" value="{{$bibliotekar->password}}" class="flex w-[90%] mt-2 px-2 py-2 text-base bg-white border border-gray-300 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#576cdf]" onkeydown="clearErrorsPwBibliotekarEdit()"/>
                                 <div class="fail" id="validatePwBibliotekarEdit">
                                 @error('pwBibliotekarEdit')@php echo "Sifra bibliotekara je obavezno polje"; @endphp @enderror
-                             
+
                                 </div>
                             </div>
 
@@ -107,7 +107,7 @@
                                
                                 <div class="fail" id="validatePw2BibliotekarEdit">
                                 @error('pw2BibliotekarEdit')@php echo "Ponovljena sifra bibliotekara je obavezno polje i mora da se poklapa sa gornjom sifrom"; @endphp @enderror
-                             
+
                                 </div>
                             </div>
                         </div>
@@ -124,9 +124,9 @@
                                         <span class="px-4 py-2 mt-2 leading-normal">Add photo</span>
                                         <input type='file' class="hidden" :accept="accept" onchange="loadFileLibrarian(event)" />
                                     </div>
-                                    <img src="img/profileExample.jpg" id="image-output-librarian" class="absolute w-48 h-[188px] bottom-0" />	
+                                    <img src="img/profileExample.jpg" id="image-output-librarian" class="absolute w-48 h-[188px] bottom-0" />
                                 </div>
-                            </label>  
+                            </label>
                         </div>
                     </div>
 
@@ -135,16 +135,16 @@
                             <div class="inline-block w-full text-right py-[7px] mr-[100px] text-white">
                                 <button type="reset"
                                         class="btn-animation shadow-lg mr-[15px] w-[150px] focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in bg-[#F44336] hover:bg-[#F55549] rounded-[5px]">
-                                            Ponisti <i class="fas fa-times ml-[4px]"></i> 
+                                            Ponisti <i class="fas fa-times ml-[4px]"></i>
                                 </button>
                                 <button id="sacuvajBibliotekaraEdit" type="submit"
                                         class="btn-animation shadow-lg w-[150px] disabled:opacity-50 focus:outline-none text-sm py-2.5 px-5 transition duration-300 ease-in rounded-[5px] hover:bg-[#46A149] bg-[#4CAF50]" >
-                                            Sacuvaj <i class="fas fa-check ml-[4px]"></i> 
+                                            Sacuvaj <i class="fas fa-check ml-[4px]"></i>
                                 </button>
                             </div>
-                        </div>        
+                        </div>
                     </div>
-                    
+
                 </form>
             </div>
         </section>
